@@ -92,11 +92,11 @@ from matplotlib import pyplot as plt
 K.set_image_data_format('channels_last')
 
 ##################### Process, filter and epoch the data ######################
-data_path = sample.data_path()
+data_path = sample.data_path('.')
 
 # Set parameters and read data
-raw_fname = data_path + '/MEG/sample/sample_audvis_filt-0-40_raw.fif'
-event_fname = data_path + '/MEG/sample/sample_audvis_filt-0-40_raw-eve.fif'
+raw_fname = './'+ str(data_path) + '/MEG/sample/sample_audvis_filt-0-40_raw.fif'
+event_fname = './' + str(data_path) + '/MEG/sample/sample_audvis_filt-0-40_raw-eve.fif'
 tmin, tmax = -0., 1
 event_id = dict(aud_l=1, aud_r=2, vis_l=3, vis_r=4)
 
@@ -235,7 +235,7 @@ print("Classification accuracy: %f " % (acc2))
 names        = ['audio left', 'audio right', 'vis left', 'vis right']
 plt.figure(0)
 plot_confusion_matrix(preds, Y_test.argmax(axis = -1), names, title = 'EEGNet-8,2')
-
+plt.savefig('1.png')
 plt.figure(1)
 plot_confusion_matrix(preds_rg, Y_test.argmax(axis = -1), names, title = 'xDAWN + RG')
 
